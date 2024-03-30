@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-Compatible" content="if-edge">
+        <meta name="viewport" content="width-device-width,initial-scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+        <title>AUTISM</title>
+
+    </head>
+    <body>
+        <div id="header">
+            <div class ="container">
+                <nav>
+                    <img src="https://1000logos.net/wp-content/uploads/2020/09/Autism-Speaks-logo.png" class="logo">
+                    <ul>
+                        <li>
+                            <a class="nav-link " href="#home">Home</a>
+                        </li>
+                        <li>
+                            <a class="nav-link " href="#about">About</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="#prediction">Predict</a>
+                        </li>
+                        <li>
+                            <a class="nav-link " href="#contact">Contact</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="header-text">
+                    <p>AUTISM SPECTRUM DISORDER</p>
+                    <h1>
+                        Hi, <span>Lets get</span><br>Started</h1>
+                </div>
+            </div> 
+        </div>
+        <div >
+            <div class="container">
+                <div class="row">
+                    <div class="col-1">
+                        <br>
+                        <h1 class="sub-title" id="about" ></h1><br>
+                      <img src="https://www.childpsych.co.za/wp-content/uploads/2019/11/child-with-autism.jpg" >  
+                    </div>
+                    <div class="col-2">
+                        <h1 class="sub-title" id="about" >ABOUT AUTISM</h1>
+                        <p>Autism spectrum disorder (ASD) is a developmental disability that can cause
+                             significant social, communication and behavioral challenges. There is often nothing about how
+                              people with ASD look that sets them apart from other people, but people with ASD may communicate,
+                              interact, behave, and learn in ways that are different from most other people. The learning, thinking, and problem-solving abilities of people with ASD can range from gifted to severely challenged. 
+                            Some people with ASD need a lot of help in their daily lives; others need less.</p>
+                        <div class="tab-titles">
+                            <p class="tab-links active-link" onclick="opentab('skills')">SYMPTOMS</p>
+                            <p class="tab-links" onclick="opentab('diagnosis')">DIAGNOSIS</p>
+                    
+                        </div>
+                        <div class="tab-contents active-tab" id='skills' >
+                            <ul>
+                                <li>
+                                    <span>Social Interaction Difficulties</span><br> People with ASD often struggle with initiating and sustaining reciprocal social interaction.
+                                </li>
+                                <li>
+                                    <span>Communication Challenges</span><br>Individuals with ASD may experience difficulties in communication.
+                                </li>
+                                <li>
+                                    <span>Restricted Interests and Repetitive Behaviors</span><br>A hallmark of ASD is the presence of restricted, repetitive, and inflexible patterns of behavior, interests, or activities.
+                                </li>
+                                <li>
+                                    <span>Atypical Learning and Attention Patterns</span><br>People with ASD may exhibit unique ways of learning, movement differences, or attention variations.
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="tab-contents" id='diagnosis'>
+                            <ul>
+                                <li>
+                                    <span>A diagnosis of ASD now includes several conditions that used to be diagnosed separately:</span><br>
+                                </li>
+                                <li>
+                                    AUTISTIC DISORDER
+                                </li>
+                                <li>
+                                    PERVASIVE DEVELOPMENTAL DISORDER
+                                </li>
+                                <li>
+                                    ASPERGER SYNDROME
+                                </li>
+                                
+                            </ul>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="container">
+        <h1 class="sub-title" id="prediction">MODEL PREDICTION</h1>
+            <div class="container">
+                <div class="main-wrapper">
+                    <form action="{{ url_for('predict') }}" method="post">
+                        <div class="row mb-1">
+                            <div class="col-3">
+                                <label for="A1_Score" id="A1_Score">Does your child respond when you call their name? </label><br>
+                                <input type="radio"  name="A1_Score" value="yes" required>
+                                <label for="A1_Score_yes">Yes</label>
+                                <input type="radio" id="A1_Score_no" name="A1_Score" value="no" required>
+                                <label for="A1_Score_no">No</label>
+                            
+                            </div>
+                        
+                            <div class="col-3">
+                                <label for="A2_Score">How simple is it for you to look your children in the eye?</label><br>
+                                <input type="radio" id="A2_Score_yes" name="A2_Score" value="yes" required>
+                                <label for="A2_Score_yes">Yes</label>
+                                <input type="radio" id="A2_Score_no" name="A2_Score" value="no" required>
+                                <label for="A2_Score_no">No</label>
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                                <div class="col-3">
+                                <label for="A3_Score">Does your child use pointing to express what they want? </label><br>
+                                <input type="radio" id="A3_Score_yes" name="A3_Score" value="yes" required>
+                                <label for="A3_Score_yes">Yes</label>
+                                <input type="radio" id="A3_Score_no" name="A3_Score" value="no" required>
+                                <label for="A3_Score_no">No</label>
+                            </div>
+                        
+
+                        <div class="col-3">
+                            <label for="A4_Score">Does your child highlight a shared interest with you?</label><br>
+                            <input type="radio" id="A4_Score_yes" name="A4_Score" value="yes" required>
+                            <label for="A4_Score_yes">Yes</label>
+                            <input type="radio" id="A4_Score_no" name="A4_Score" value="no" required>
+                            <label for="A4_Score_no">No</label>
+                        </div>
+                        </div>
+                        <div class="row mb-1">
+                        <div class="col-3">
+                            <label for="A5_Score">Does your child care for things? </label><br>
+                            <input type="radio" id="A5_Score_yes" name="A5_Score" value="yes" required>
+                            <label for="A5_Score_yes">Yes</label>
+                            <input type="radio" id="A5_Score_no" name="A5_Score" value="no" required>
+                            <label for="A5_Score_no">No</label>
+                        </div>
+
+                        <div class="col-3">
+                            <label for="A6_Score">Is your child looking in the same direction as you? </label><br>
+                            <input type="radio" id="A6_Score_yes" name="A6_Score" value="yes" required>
+                            <label for="A6_Score_yes">Yes</label>
+                            <input type="radio" id="A6_Score_no" name="A6_Score" value="no" required>
+                            <label for="A6_Score_no">No</label>
+                        </div>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-3">
+                            <label for="A7_Score">Does your child express a desire to console you or another member of the family
+                                who is visibly upset? </label><br>
+                            <input type="radio" id="A7_Score_yes" name="A7_Score" value="yes" required>
+                            <label for="A7_Score_yes">Yes</label>
+                            <input type="radio" id="A7_Score_no" name="A7_Score" value="no" required>
+                            <label for="A7_Score_no">No</label>
+                        </div>
+
+                        <div class="col-3">
+                            <label for="A8_Score">What are your child’s first words? </label><br>
+                            <input type="radio" id="A8_Score_yes" name="A8_Score" value="yes" required>
+                            <label for="A8_Score_yes">Yes</label>
+                            <input type="radio" id="A8_Score_no" name="A8_Score" value="no" required>
+                            <label for="A8_Score_no">No</label>
+                        </div>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-3">
+                            <label for="A9_Score">Does your child shows simple gestures? </label><br>
+                            <input type="radio" id="A9_Score_yes" name="A9_Score" value="yes" required>
+                            <label for="A9_Score_yes">Yes</label>
+                            <input type="radio" id="A9_Score_no" name="A9_Score" value="no" required>
+                            <label for="A9_Score_no">No</label>
+                        </div>
+                    
+                        <div class="col-3">
+                            <label for="A10_Score">Does your child seems to be beginning from scratch with no clear goal in mind?</label><br>
+                            <input type="radio" id="A10_Score_yes" name="A10_Score" value="yes" required>
+                            <label for="A10_Score_yes">Yes</label>
+                            <input type="radio" id="A10_Score_no" name="A10_Score" value="no" required>
+                            <label for="A10_Score_no">No</label>
+                        </div>
+                    </div>
+                        
+                    <div class="row mb-1"> 
+                            <div class="col-3">
+                                <label>Gender:</label><br>
+                                <input type="radio" id="gender_male" name="gender" value="male" required>
+                                <label for="gender_male">Male</label>
+                                <input type="radio" id="gender_female" name="gender" value="female" required>
+                                <label for="gender_female">Female</label>
+                            </div>                            
+                            <div class="row mb-1">
+                                <div class="col-3">
+                                    <label>Autism:</label><br>
+                                    <input type="radio" id="autism_yes" name="autism" value="yes" required>
+                                    <label for="autism_yes">Yes</label>
+                                    <input type="radio" id="autism_no" name="autism" value="no">
+                                    <label for="autism_no">No</label>
+                                </div>
+                            </div>           
+                                <div class="col-3">
+                                    <label for="jaundice">Jaundice:</label><br>
+                                    <input type="radio" id="jaundice_yes" name="jaundice" value="yes" required>
+                                    <label for="jaundice_yes">Yes</label>
+                                    <input type="radio" id="jaundice_no" name="jaundice" value="no">
+                                    <label for="jaundice_no">No</label>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-3">
+                                <label for="ethnicity">Ethnicity:</label><br>
+                                <select id="ethnicity" name="ethnicity" required>
+                                    <option value="" disabled selected>Select ethnicity</option>
+                                    <option value="Black">Black</option>
+                                    <option value="South Asian">South Asian</option>
+                                    <option value="Hispanic">Hispanic</option>
+                                    <option value="?">?</option>
+                                    <option value="Latino">Latino</option>
+                                    <option value="White-European">White-European</option>
+                                    <option value="Middle Eastern">Middle Eastern</option>
+                                    <option value="Asian">Asian</option>
+                                    <option value="Others">Others</option>
+                                    <option value="Pasifika">Pasifika</option>
+                                    <option value="Turkish">Turkish</option>
+                                </select>
+                            </div>
+                            <div class="row mb-1">
+                                <div class="col-3">
+                                    <label for="age">Age:</label>
+                                    <input type="text" id="age" name="age" required>
+                                    </div>
+                                    <div class="col-3">
+                                        <label for="country_of_res">Country of Residence:</label><br>
+                                        <select id="country_of_res" name="country_of_res" required>
+                                            <option value="" disabled selected>Select your country</option>
+                                            <option value="India">India</option>
+                                            <option value="United States">United States</option>
+                                            <option value="United Kingdom">United Kingdom</option>
+                                            <option value="United Arab Emirates">United Arab Emirates</option>
+                                            <option value="New Zealand">New Zealand</option>
+                                            <option value="Mexico">Mexico</option>
+                                            <option value="South Africa">South Africa</option>
+                                            <option value="Romania">Romania</option>
+                                            <option value="Malaysia">Malaysia</option>
+                                            <option value="Afghanistan">Afghanistan</option>
+                                            <option value="Sri Lanka">Sri Lanka</option>
+                                            <option value="Australia">Australia</option>
+                                            <option value="Aruba">Aruba</option>
+                                            <option value="Russia">Russia</option>
+                                            <option value="Saudi Arabia">Saudi Arabia</option>
+                                            <option value="Bahamas">Bahamas</option>
+                                            <option value="Netherlands">Netherlands</option>
+                                            <option value="Belgium">Belgium</option>
+                                            <option value="Canada">Canada</option>
+                                            <option value="Jordan">Jordan</option>
+                                            <option value="France">France</option>
+                                            <option value="China">China</option>
+                                            <option value="Austria">Austria</option>
+                                            <option value="Iran">Iran</option>
+                                            <option value="Spain">Spain</option>
+                                            <option value="Brazil">Brazil</option>
+                                            <option value="Serbia">Serbia</option>
+                                            <option value="Pakistan">Pakistan</option>
+                                            <option value="Ireland">Ireland</option>
+                                            <option value="Armenia">Armenia</option>
+                                            <option value="Philippines">Philippines</option>
+                                            <option value="Italy">Italy</option>
+                                            <option value="Viet Nam">Viet Nam</option>
+                                            <option value="Argentina">Argentina</option>
+                                            <option value="American Samoa">American Samoa</option>
+                                            <option value="Hong Kong">Hong Kong</option>
+                                            <option value="Germany">Germany</option>
+                                            <option value="Uruguay">Uruguay</option>
+                                            <option value="Azerbaijan">Azerbaijan</option>
+                                            <option value="Costa Rica">Costa Rica</option>
+                                            <option value="Iceland">Iceland</option>
+                                            <option value="Kazakhstan">Kazakhstan</option>
+                                            <option value="Ethiopia">Ethiopia</option>
+                                            <option value="Egypt">Egypt</option>
+                                            <option value="Czech Republic">Czech Republic</option>
+                                            <option value="Tonga">Tonga</option>
+                                            <option value="Ukraine">Ukraine</option>
+                                            <option value="Nicaragua">Nicaragua</option>
+                                            <option value="Bolivia">Bolivia</option>
+                                            <option value="Japan">Japan</option>
+                                            <option value="Sierra Leone">Sierra Leone</option>
+                                            <option value="Angola">Angola</option>
+                                            <option value="Oman">Oman</option>
+                                            <option value="Indonesia">Indonesia</option>
+                                            <option value="Finland">Finland</option>
+                                            <option value="Cyprus">Cyprus</option>
+                                            <option value="Iraq">Iraq</option>
+                                            <option value="Niger">Niger</option>
+                                            <option value="Bangladesh">Bangladesh</option>
+                                            <option value="Sweden">Sweden</option>
+                                            <option value="Ecuador">Ecuador</option>
+                                        </select>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="btns">                        
+                            <button type="submit" name="model" value="model1">LR MODEL</button>
+                            <button type="submit" name="model" value="model2">SVM MODEL</button>
+                            <button type="submit" name="model" value="model3">NAIVE BAYES MODEL</button>
+                        </div>
+                    </form>
+                    
+                </div>   
+                </div>
+                </div>
+                <div class="model">
+
+                <div class="tab-titles ">
+                    <p class="tab-links active-link" onclick="opentab('nv')">Naive Bayes</p>
+                    <p class="tab-links" onclick="opentab('lr')">Linear Regression</p>
+                    <p class="tab-links active-link" onclick="opentab('svm')">SVM</p>
+            
+                </div>
+            </div>
+            </div>
+        
+            <div id="nv" class="tab-contents active-tab">
+                <h2>Naive Bayes Prediction:</h2>
+                
+            {% if nb_prediction==1 %}
+                <p>The model predicts as ASD .</p>
+            {% else %}
+                <p>Your child is Normal.</p>
+            {% endif %}
+        
+            </div>
+            <div id="lr" class="tab-contents">
+                <h2>Linear Regression Prediction:</h2>
+                
+            {% if lr_prediction==1 %}
+                <p>The model predicts as ASD .</p>
+            {% else %}
+                <p>Your child is Normal.</p>
+            {% endif %}
+        
+            </div>
+            <div id="svm" class="tab-contents">
+                <h2>SVM Prediction:</h2>
+                
+            {% if svm_prediction==1 %}
+                <p>The model predicts as ASD .</p>
+            {% else %}
+                <p>Your child is Normal.</p>
+            {% endif %}
+        
+            </div>
+    </div>
+</div>
+<div id="contact">
+ <div class="container">
+        <h1 class="sub-title">Feel free to contact</h1>
+        <div class="services-list">
+            <nav>
+            <div>
+                <h2><span class="icon fa fa-phone"></span><span class="text"> +91 9446068659</span></h2>
+                <h2><span class="icon fa fa-paper-plane"></span><span class="text"> anjukrishnnapk@gmail.com</span></h2>
+            </div>
+            </nav>
+            </div>
+        </div>
+</div>
+<div class="footer_content">
+    <p class="mb-0" style="font-size: 14px;">Copyright © 2024 All rights reserved</a></p>
+    </div>
+        <script >
+            var tablinks = document.getElementsByClassName("tab-links");  // Plural for getElementsByClassName
+            var tabcontents = document.getElementsByClassName("tab-contents");
+            
+            function opentab(tabname) {
+              for (let tablink of tablinks) {
+                tablink.classList.remove("active-link");
+              }
+              for (let tabcontent of tabcontents) {
+                tabcontent.classList.remove("active-tab");
+              }
+              event.currentTarget.classList.add("active-link");
+              document.getElementById(tabname).classList.add("active-tab");
+            }
+            
+        </script>
+
+    </body>
+
+</html>
