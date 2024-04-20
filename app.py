@@ -29,7 +29,6 @@ def predict_lr(features):
     prediction = loaded_lr_model.predict(features)
     return prediction
 
-
 # Predict using SVM model
 def predict_svm(features):
 
@@ -37,11 +36,7 @@ def predict_svm(features):
     prediction = loaded_svm_model.predict(features)
     return prediction
 
-
-# Route to handle form submission
-@app.route('/predict', methods=['POST'])
-def predict():
-
+def get_features_from_form():
     A1_Score = 1 if request.form.get('A1_Score') == 'yes' else 0
     A2_Score = 1 if request.form.get('A2_Score') == 'yes' else 0
     A3_Score = 1 if request.form.get('A3_Score') == 'yes' else 0
@@ -58,7 +53,25 @@ def predict():
     ethnicity = request.form['ethnicity']
     age = request.form['age']
     country_of_res = request.form['country_of_res']
-    
+
+    features_dict = {
+    'A1_Score': A1_Score,
+    'A2_Score': A2_Score,
+    'A3_Score': A3_Score,
+    'A4_Score': A4_Score,
+    'A5_Score': A5_Score,
+    'A6_Score': A6_Score,
+    'A7_Score': A7_Score,
+    'A8_Score': A8_Score,
+    'A9_Score': A9_Score,
+    'A10_Score': A10_Score,
+    'gender': gender,
+    'autism': autism,
+    'jaundice': jaundice,
+    'ethnicity': ethnicity,
+    'age': age,
+    'country_of_res': country_of_res
+    }
     country_mapping = {
     'India': 27, 'United States': 58, 'United Kingdom': 57, 'United Arab Emirates': 56,
     'New Zealand': 39, 'Mexico': 37, 'South Africa': 50, 'Romania': 45, 'Malaysia': 36,
@@ -74,48 +87,54 @@ def predict():
     'Cyprus': 17, 'Iraq': 30, 'Niger': 41, 'Bangladesh': 10, 'Sweden': 53,
     'Ecuador': 19
     }
-
     for name, number in country_mapping.items():
         if name == country_of_res:
             country_of_res=number  # Output: 27
-            break
-        
+            break       
     ethnicity_mapping = {
     'Black': 2, 'South Asian': 8, 'Hispanic': 3, '?': 0, 'Latino': 4,
     'White-European': 10, 'Middle Eastern': 5, 'Asian': 1, 'Others': 6,
     'Pasifika': 7, 'Turkish': 9
     }
-
-
     for name, number in ethnicity_mapping.items():
         if name == ethnicity:
             ethnicity = number
             break
-
     # Convert form values to features
     features = np.array([A1_Score, A2_Score, A3_Score, A4_Score, A5_Score, 
                           A6_Score, A7_Score, A8_Score, A9_Score, A10_Score,
                           gender, autism, jaundice, ethnicity, age, country_of_res])
     
     features=label_encoder.fit_transform(features)
-
-    # Create a StandardScaler instance
-#     scaler = StandardScaler()
-
-# # Fit and transform the scaler on the training data
-#     input_features_scaled = scaler.fit_transform(features)
     features = np.array(features).reshape(1, -1)
+    return features
+# Route for Naive Bayes prediction
+@app.route('/predict_nb', methods=['POST'])
+def predict_nb_route():
+    nb_prediction = predict_nb(get_features_from_form())
+    return render_template('nb.html',nb_prediction=nb_prediction)
+# Route for Logistic Regression prediction
+@app.route('/predict_lr', methods=['POST'])
+def predict_lr_route():
+    lr_prediction = predict_lr(get_features_from_form())
+    return render_template('lr.html',lr_prediction=lr_prediction)
+# Route for SVM prediction
+@app.route('/predict_svm', methods=['POST'])
+def predict_svm_route():
+    svm_prediction = predict_svm(get_features_from_form())
+    return render_template('svm.html',svm_prediction=svm_prediction)
+
+# Route to handle form submission
+@app.route('/predict_all', methods=['POST'])
+def predict():
     # Predict using Naive Bayes model
-    nb_prediction = predict_nb(features)
-    
+    nb_prediction = predict_nb(get_features_from_form())   
     # Predict using Logistic Regression model
-    lr_prediction = predict_lr(features)
-    
+    lr_prediction = predict_lr(get_features_from_form())   
     # Predict using SVM model
-    svm_prediction = predict_svm(features)
-    
+    svm_prediction = predict_svm(get_features_from_form())   
     # Return predictions
-    return render_template('index.html ', nb_prediction=nb_prediction, lr_prediction=lr_prediction, svm_prediction=svm_prediction)
+    return  render_template('compare.html', nb_prediction=nb_prediction, lr_prediction=lr_prediction, svm_prediction=svm_prediction)
 
 if __name__ == '__main__':
     app.run(debug=True)
